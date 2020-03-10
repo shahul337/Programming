@@ -1,0 +1,51 @@
+FOR CREATING HTML FORM:
+
+<!DOCTYPE html>
+<head>
+<title>Insert data to mySQL with php - creating a simple web application</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+li {listt-style: none;}
+</style>
+</head>
+<body>
+<h2>T.E.-AIKTC</h2>
+<ul>
+<form method="POST" action="process.php" >
+<li>Username:</li><li><input type="text" name="username" /></li>
+<li>Password:</li><li><input type="text" name="password" /></li>
+<li><input type="submit" /></li>
+</form>
+</ul>
+</body>
+</html>
+
+
+FOR ESTABLISHING CONNECTION WITH THE DESIRED DATABASE:
+
+<?php
+$connect=mysqli_connect('localhost','root','','te');
+
+if(mysqli_connect_errno($connect))
+{
+		echo 'Failed to connect';
+}
+
+?>
+
+
+FOR INSERTING THE DATA INTO THE DATABASE:
+
+<?php include 'database.php'; ?>
+
+<?php
+
+// create a variable
+$user_name=$_POST['username'];
+$pass_word=$_POST['password'];
+
+//Execute the query
+
+mysqli_query($connect,"INSERT INTO student(username,password)
+				VALUES('$user_name','$pass_word')");
+
